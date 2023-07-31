@@ -1,0 +1,61 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="stores__home">
+    <a asp-controller="Home" asp-action="Index"> Home /</a>
+    <a asp-controller="Blog" asp-action="Index">Blog</a>
+</div>
+
+
+<div class="blog__wrapper">
+    <div class="blog__wrapper__one">
+        @foreach (var blogItem in Model)
+        {
+            <div class="blog__wrapper__item">
+                <div class="blog__wrapper__item__title">Lastest Blogs</div>
+                <p class="blog__wrapper__item__subtitle">
+                    @blogItem.Title
+                </p>
+                <i class="fa-solid fa-share-nodes"></i>
+                <span class="blog__wrapper__item__span">Share</span>
+                <i class="fa-brands fa-facebook" style="color: #1a5fd5"></i>
+                <span class="blog__wrapper__item__span">Facebook</span>
+                <i class="fa-brands fa-twitter" style="color: #8eb0ec"></i>
+                <span class="blog__wrapper__item__span">Twitter</span>
+                <div class="blog__wrapper__box">
+                    <i class="fa-solid fa-clock" style="color: #b7bbc2"></i>
+                    <span class="blog__wrapper__item__span">On: @blogItem.CreatedAt</span>
+                </div>
+                <hr />
+                <div class="blog__wrapper__item__photo">
+                    <img src="~/uploads/blogImages/@blogItem.Image" alt="BlogImage" />
+                </div>
+                <div class="blog__wrapper__item__text">
+                    @blogItem.Desc
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="blog__wrapper__second">
+
+        <div class="blog__wrapper__second__text">Recent Articles</div>
+        @foreach (var blogItem in Model.TakeLast(5))
+        {
+               <div class="blog__wrapper__second__descr">
+            <a asp-action="index" asp-controller="Blog">
+                <img src="~/uploads/blogImages/@blogItem.Image" alt="blogImage" />
+            </a>
+            <div class="blog__wrapper__second__descr__text">
+               @blogItem.Title <br />
+             @blogItem.CreatedAt
+            </div>
+        </div>
+        <hr />
+        }
+     
+    </div>
+</div>
+

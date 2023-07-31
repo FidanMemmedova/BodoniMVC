@@ -1,0 +1,45 @@
+﻿@model UserRegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="accaunt">
+    <div class="accaunt__title">Create an account</div>
+    <div class="container">
+        <div class="accaunt__wrapper">
+            <div class="accaunt__wrapper__title">
+                <a asp-action="login" asp-controller="Account"> Already have an account? Log in instead!</a>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p class="accaunt__p">UserName</p>
+                    <p class="accaunt__p">FullName</p>
+                    <p class="accaunt__pb">Email</p>
+                    <p class="accaunt__pb">Password</p>
+                    <p class="accaunt__pb">Confirm password</p>
+                </div>
+                <div class="col-4 offset-2">
+                    <form id="consultation-form" method="post" class="accaunt__form" asp-action="register">
+                        <div class="row">
+                        <div class="col-md-12 col-12 mb--15">
+                            <input required class="accaunt__input" asp-for="UserName">
+                            <span class="text-danger" asp-validation-for="UserName"></span>
+                            <input required class="accaunt__input" asp-for="FullName">
+                            <span class="text-danger" asp-validation-for="FullName"></span>
+                            <input required class="accaunt__input" asp-for="Email">
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                            <input required class="accaunt__input" asp-for="Password">
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                            <input class="mb-0 form-control" asp-for="ConfirmPassword">
+                            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <button type="Submit" class="accaunt__button">Register</button>
+                        </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

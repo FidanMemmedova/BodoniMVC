@@ -1,0 +1,50 @@
+﻿@model PaginatedList<Property>
+@{
+    ViewData["Title"] = "Index";
+    int count = (Model.PageIndex - 1) * Model.PageSize;
+}
+
+<div class="my-container-fluid ">
+    <div class="col-md-8 m-auto d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Properties</h1>
+        <a asp-action="Create" asp-controller="Property" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create Property</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-sm ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var PropertyItem in Model.Items)
+                    {
+                        count++;
+                        <tr>
+                            <td scope="row">@count</td>
+                            <td>@PropertyItem.Name</td>
+                            <td>
+                                <a asp-action="edit" asp-route-id="@PropertyItem.Id" class="btn btn-info">Edit</a>
+                                <a asp-action="delete" asp-route-id="@PropertyItem.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPrev?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex-1)">Previous</a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                            <li class="page-item @(Model.PageIndex==i?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                    }
+                    <li class="page-item @(Model.HasNext?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex+1)">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+</head>
+<body>
+    <div id="up" class="shop">
+        <div class="container">
+            <header class="header">
+                <a asp-action="Index" asp-controller="Home" class="header__logo">
+                    <img src="~/assets/img/mainlogo.jpg" alt="logo" />
+                </a>
+                <div class="header__menu">
+                    <a asp-controller="Home" asp-action="Index" class="header__official">HOME</a>
+                    <a asp-controller="Store" asp-action="Index" class="header__official">STORES</a>
+                    <a asp-controller="Contact" asp-action="Index" class="header__official">
+                        CONTACT
+                    </a>
+                    <a asp-controller="Blog" asp-action="Index" class="header__official">BLOG</a>
+                    <a asp-controller="Shop" asp-action="Index" class="header__official">SHOP</a>
+                  @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                    {
+
+                       <a asp-action="index" asp-controller="home" class="text-white">@User.Identity.Name</a>
+                        <a asp-action="logout" asp-controller="account" class="text-white"><i class="fas fa-sign-out-alt" style="color: #e2e3e4"></i></a>
+                    }
+                    else
+                    {
+                        <a asp-action="login" asp-controller="account" class="text-white"> <i class="fa-regular fa-user" style="color: #e2e3e4"></i></a> <br>
+                    }
+                   @* <a asp-controller="Basket" asp-action="Index">
+                        <i class="fa-solid fa-cart-shopping" style="color: #e2e3e4"></i>
+                    </a>*@
+                </div>
+            </header>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <div class="footer__logo">
+                        <img src="~/assets/img/mainlogo.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-4 offset-2">
+                    <div class="footer__text">
+                        <div class="footer__title">NEWSLETTER</div>
+                        <p class="footer__subtitle footer__subtitle_i">
+                            By signing up, you agree to the Privacy Policy and you will be
+                            <br />
+                            receiving our newsletters
+                        </p>
+                        <form class="footer__form" action="/action_page.php">
+                            <input type="text" name="e-mail" value="Your E-mail" />
+                        </form>
+                        <hr class="footer__hr" />
+                        <button class="button_top button_top_white">Subscribe us</button>
+                    </div>
+                </div>
+                <div class="col-4 offset-1">
+                    <div class="footer__info">
+                        <div class="footer__title">CONTACT INFO</div>
+                        <p class="footer__subtitle">
+                            21 Taltarni Road, TOTTINGTON, Victoria 3478
+                        </p>
+                        <p class="footer__number">(01) 123 456 789</p>
+                        <a href="#"> <span>demo@demo.com</span> </a>
+                        <div class="footer__links">
+                            <a href="#"> <span>Terms & Conditions</span> </a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Sitemap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__end">
+                © 2021 <span>Bodoni</span> , LLC. All Rights Reserved
+            </div>
+
+            <a href="#up" class="pageup">
+                <img src="~/assets/icons/up.svg" alt="up" />
+            </a>
+        </div>
+    </div>
+    <script src="~/assets/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/e62147ac3d.js"
+            crossorigin="anonymous"></script>
+    @RenderSection("Scripts",required:false)
+</body>
+</html>

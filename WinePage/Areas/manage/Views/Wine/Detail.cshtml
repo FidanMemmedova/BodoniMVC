@@ -1,0 +1,35 @@
+﻿@model Wine
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    <img style="max-width:250px; margin:auto" src="~/uploads/wineImages/@Model.Image" class="card-img-top" alt="productImage">
+                    <div class="card-body">
+                        <h4 class="card-title">Name: @Model.Name</h4>
+                        <h6 class="card-title">@Model.Description</h6>
+                        <h6 class="card-text">Brand: @Model.Brand.Name</h6>
+                        <h6 class="cad-title">Category: @Model.Category.Name</h6>
+                        <h6 class="cad-title">Property: @Model.Property.Name</h6>
+                        <h6> Color:
+                            @foreach (var color in Model.WineColors)
+                            {
+                                    <span class="colorName"> @color.color?.Name</span>
+                            }
+                        </h6>
+                        <h6 class="cad-title">Cost Price: @Model.CostPrice</h6>
+                        <h6 class="cad-title">Sale Price: @Model.SalePrice</h6>
+                        <h6 class="cad-title">Discount Percent: @Model.DiscountPercent</h6>
+                        <p>Created At: @Model.CreatedAt</p>
+                        <a class="btn btn-outline-success" asp-action="ActivateWine" asp-controller="Wine" asp-route-id="@Model.Id" asp-route-isActive="@true">Active</a>
+                        <a class="btn btn-outline-danger" asp-action="ActivateWine" asp-controller="Wine" asp-route-id="@Model.Id" asp-route-isActive="@false">Deactive</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

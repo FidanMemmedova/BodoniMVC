@@ -1,0 +1,32 @@
+﻿@model OurClubCard
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Delete Our Club Card</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Category</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Title: @Model.Title</li>
+                </ul>  
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Description: @Model.Description</li>
+                </ul>
+                <div class="card-body">
+                    <form asp-action="delete" method="post">
+                        <button type="submit" class="card-link">Delete</button>
+                        <a asp-action="index" class="card-link">Go Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

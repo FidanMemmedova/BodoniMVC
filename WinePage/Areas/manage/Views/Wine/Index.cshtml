@@ -1,0 +1,56 @@
+﻿@using WinePage.ViewModels.Wine
+@model PaginatedList<Wine_VM>
+@{
+    ViewData["Title"] = "Index";
+    int count = (Model.PageIndex - 1) * Model.PageSize;
+}
+
+<!-- Begin Page Content -->
+<div class="my-container-fluid">
+    <div class="col-md-8 m-auto d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Wine</h1>
+            <a asp-action="create" asp-controller="Wine" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">Create Wine</a>
+        </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brand</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td><img width="50" src="~/uploads/wineImages/@item.Image"/> </td>
+                            <td>@item.Name</td>
+                            <td>@item.Brand</td>
+                            <td>
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="detail" asp-route-id="@item.Id" class="btn btn-warning">Detail</a>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger delete-btn">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+               <nav aria-label="Page navigation example">
+            <ul class="pagination">
+            <li class="page-item @(Model.HasPrev?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex-1)" asp-route-genreId="@ViewBag.BrandId" asp-route-name="@ViewBag.Name">Previous</a></li>
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+            <li class="page-item @(Model.PageIndex==i?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i" asp-route-genreId="@ViewBag.BrandId" asp-route-name="@ViewBag.Name">@i</a></li>
+            }
+            <li class="page-item @(Model.HasNext?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex+1)" asp-route-genreId="@ViewBag.BrandId" asp-route-name="@ViewBag.Name">Next</a></li>
+            </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+

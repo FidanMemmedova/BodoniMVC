@@ -1,0 +1,42 @@
+﻿@using WinePage.Services;
+@inject LayoutService layoutService
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+    Dictionary<string, string> Settings = layoutService.GetSettings();
+}
+
+<div class="my-container-fluid ">
+    <div class="col-md-8 m-auto d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">SettingB</h1>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-sm ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var settingItem in Settings)
+                    {
+                        count++;
+                        <tr>
+                            <td scope="row">@count</td>
+                            <td>@settingItem.Key</td>
+                            <td>@settingItem.Value</td>
+                            <td>
+                                <a asp-action="edit" asp-controller="Setting" asp-route-id="@settingItem.Key" class="btn btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

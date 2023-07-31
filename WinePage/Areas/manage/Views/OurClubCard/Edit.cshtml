@@ -1,0 +1,40 @@
+﻿@model OurClubCard
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit Our Club Card</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="edit" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input asp-for="Title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+                    <span class="text-danger" asp-validation-for="Title"></span>
+                </div> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input asp-for="Description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Description">
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+                    <div class="form-group">
+                    <label>Icon File</label>
+                    <input asp-for="Icon" accept="image/*" class="form-control" placeholder="Enter Image">
+                    <span class="text-danger" asp-validation-for="Icon"></span>
+                </div>
+                <img width="200" src="~/uploads/OurClubCardImages/@Model.Icon" />
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts{
+    @Html.Partial("_ValidationScriptsPartial")
+}

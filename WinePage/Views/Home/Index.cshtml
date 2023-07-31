@@ -1,0 +1,328 @@
+﻿@model Home_VM
+@inject LayoutService _layoutService
+@{
+    Dictionary<string, string> settings = _layoutService.GetSettings();
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bodoni</title>
+    
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="~/assets/css/animate.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+</head>
+<body>
+    <div id="up" class="promo">
+        <div class="container">
+            <header class="header">
+                <a href="#" class="header__logo">
+                    <img src="~/uploads/settingImages/@settings["mainLogo"]" alt="logo" />
+                </a>
+                <div class="header__menu">
+                    <a asp-controller="Store" asp-action="Index" class="header__official">STORES</a>
+                    <a asp-controller="Contact" asp-action="Index" class="header__official">
+                        CONTACT
+                    </a>
+                    <a asp-controller="Blog" asp-action="Index" class="header__official">BLOG</a>
+                    <a asp-controller="Shop" asp-action="Index" class="header__official">SHOP</a>
+                </div>
+                <div class="header__descr">
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                    {
+
+                        <a asp-action="index" asp-controller="home" style="color: #e2e3e4" class="text-white">@User.Identity.Name</a>
+                        <a asp-action="logout" asp-controller="account" class="text-white"><i class="fas fa-sign-out-alt" style="color: #e2e3e4"></i></a>
+                    }
+                    else
+                    {
+                        <a asp-action="login" asp-controller="account" class="text-white"> <i class="fa-regular fa-user" style="color: #e2e3e4"></i></a> <br>
+                    }
+                  @*  <a asp-action="Index" asp-controller="Basket">
+                        <i class="fa-solid fa-cart-shopping" style="color: #e2e3e4"></i>
+                    </a>*@
+                </div>
+            </header>
+
+            <div class="promo__wrapper">
+                <h1 class="promo__header animate__animated animate__bounceInLeft">
+                    Discover
+                </h1>
+                <h2 class="promo__subheader animate__animated animate__backInRight">
+                    A Pioneer of American <br />
+                    River Valley Wine
+                </h2>
+                <form>
+                    <button asp-controller="Shop" asp-action="Index" class="button animate__animated animate__backInUp">
+                        Learn more
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="welcome">
+        <div class="container">
+            <!--  -->
+            <div class="welcome__wrapper">
+                <div class="welcome__descr">
+                    <div class="title title_fz11px">@settings["title2"]</div>
+                    <div class="title title_fz40px">
+                        Vineyards <br />
+                        of Distinction
+                    </div>
+
+                    <div class="welcome__title">WINES OF CHARACTER</div>
+                    <div class="welcome__text">
+                        Lorem ipsum dolor sit amet, consectetur <br />
+                        adipiscing elit. Habitasse venenatis purus <br />
+                        faucibus enim rhoncus suspendisse. Nestus et <br />
+                        elementum lacus, sem sapien faucibus.
+                    </div>
+                    <form>
+                        <button asp-controller="Blog" asp-action="Index" class="button_top">BLOG</button>
+                    </form>
+                </div>
+                <div class="welcome__images">
+                    <div class="welcome__images_one">
+                        <img class="welcome__images__one_img"
+                             src="~/uploads/settingImages/@settings["welcometobodoniImage1"]"
+                             alt="image" />
+                    </div>
+                    <div>
+                        <img src="~/uploads/settingImages/@settings["welcometobodoniImage2"]" alt="image" />
+                    </div>
+                    <div class="welcome__images__thirt">
+                        <img src="~/uploads/settingImages/@settings["welcometobodoniImage3"]" alt="image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="catalog">
+        <div class="container">
+            <div class="catalog__header">
+                <div class="catalog__left">
+                    <div class="title title_fz11px animate__backInLeft">@settings["title3"]</div>
+                    <div class="title title_fz40px">@settings["headling3"]</div>
+                </div>
+                <div class="catalog__main">
+                    <div class="welcome__text">
+                        Join our family of wine lovers and be the first to taste our new
+                        <br />
+                        releases and attend special events.
+                    </div>
+                </div>
+                <div class="catalog__rigth">
+                    <form action="shop.html">
+                        <button asp-controller="Shop" asp-action="Index" class="button_top">SHOP</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="catalog__items animate__animated animate__slideInLeft wow"
+                 data-wow-duration="1s"
+                 data-wow-delay="1s">
+                @foreach (var wineItem in Model.Wine.TakeLast(3))
+                {
+                    <div class="catalog__item">
+                        <div class="catalog__img">
+                            <img src="~/uploads/wineImages/@wineItem.Image" alt="wineImage" />
+                        </div>
+                        <div class="catalog__text">@wineItem.Name</div>
+                        <div class="catalog__price">$@wineItem.SalePrice</div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="quality">
+        <div class="container">
+            <div class="title title_fz11px title_fz11px_c">@settings["title4"]</div>
+            <div class="title title_fz40px title_fz40px_c">@settings["headling4"]</div>
+
+            <div class="quality__wrapper">
+                <div class="quality__wrapper__box1">
+                    <div class="quality__wrapper__box1__img">
+                        <img src="~/uploads/settingImages/@settings["PassionateGrowerImage"]" />
+                    </div>
+                </div>
+                <div class="quality__wrapper__box2">
+                    @foreach (var cardItem in Model.PassionateGrowersCards)
+                    {
+                        <div class="quality__wrapper__box2__item">
+                            <div class="quality__wrapper__box2__item__img">
+                                <img src="~/uploads/PassionateGrowersCardImages/@cardItem.Icon" />
+                            </div>
+                            <div>
+                                <div class="quality__wrapper__box2__item__title">
+                                    @cardItem.Title
+                                </div>
+                                <p class="quality__wrapper__box2__item__subtitle">
+                                    @cardItem.Description
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="reserve">
+        <div class="container">
+            <div class="reserve__bg">
+                <div class="reserve__bg__title">@settings["title5"]</div>
+
+                <div class="reserve__bg__subtitle">
+                    @settings["headling5"]
+                </div>
+                <div class="reserve__bg__text">
+                    @settings["summary5"]
+                </div>
+                <button class="reserve__bg__button">@settings["button5"]</button>
+                <div class="reserve__bg__endtext">drink & tasting</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="club">
+        <div class="container">
+            <div class="title title_fz11px">OUR CLUB</div>
+            <div class="title title_fz40px">Become a Member</div>
+
+            <div class="club__nav">
+                <div class="club__nav__text">
+                    Discover Bodoni spice through wine club membership, and enjoy
+                    limited production wines delivered to your door, special benefits
+                    when you visit the winery and discounts on wines throughout the
+                    year.
+                </div>
+                <div>
+                    <form action="stores.html">
+                        <button asp-controller="Store" asp-action="Index" class="button_top">Stores</button>
+                    </form>
+                </div>
+            </div>
+            <div class="club__wrapper">
+                <div>
+                    @foreach (var cardItem in Model.OurClubCards)
+                    {
+                        <div class="club__wrapper__item">
+                            <div>
+                                <img src="~/uploads/OurClubCardImages/@cardItem.Icon" alt="IconImage" />
+                            </div>
+                            <div>
+                                <p class="club__wrapper__item__title">@cardItem.Title</p>
+                                <p class="club__wrapper__item__subtitle">
+                                    @cardItem.Description
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                <div>
+                    <img src="~/uploads/settingImages/@settings["OurClubImage"]" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio">
+        <div class="container">
+            <div class="portfolio__wrapper">
+                <a href="#" class="portfolio__item">
+                    <img src="~/uploads/settingImages/@settings["image1"]" alt="uber" />
+                </a>
+                <a href="#" class="portfolio__item vertical">
+                    <img src="~/uploads/settingImages/@settings["image2"]" alt="pulse" />
+                </a>
+                <a href="#" class="portfolio__item">
+                    <img src="~/uploads/settingImages/@settings["image3"]" alt="test" />
+                </a>
+                <a href="#" class="portfolio__item">
+                    <img src="~/uploads/settingImages/@settings["image4"]" alt="test" />
+                </a>
+                <a href="#" class="portfolio__item">
+                    <img src="~/uploads/settingImages/@settings["image5"]" alt="test" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="stores__home">
+        @settings["slogan"]
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <div class="footer__logo">
+                        <img src="~/uploads/settingImages/@settings["mainLogo"]" alt="" />
+                    </div>
+                </div>
+                <div class="col-4 offset-2">
+                    <div class="footer__text">
+                        <div class="footer__title">NEWSLETTER</div>
+                        <p class="footer__subtitle footer__subtitle_i">
+                            By signing up, you agree to the Privacy Policy and you will be
+                            <br />
+                            receiving our newsletters
+                        </p>
+                        <form class="footer__form" action="/action_page.php">
+                            <input type="text" name="e-mail" value="Your E-mail" />
+                        </form>
+                        <hr class="footer__hr" />
+                        <button class="button_top button_top_white">Subscribe us</button>
+                    </div>
+                </div>
+                <div class="col-4 offset-1">
+                    <div class="footer__info">
+                        <div class="footer__title">CONTACT INFO</div>
+                        <p class="footer__subtitle">
+                           @settings["address"]
+                        </p>
+                        <p class="footer__number">@settings["phone"]</p>
+                        <a href="#"> <span>@settings["mail"]</span> </a>
+                        <div class="footer__links">
+                            <a href="#"> <span>Terms & Conditions</span> </a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Sitemap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__end">
+                © 2021 <span>Bodoni</span> , LLC. All Rights Reserved
+            </div>
+        </div>
+    </div>
+
+    <a href="#up" class="pageup">
+        <img src="~/assets/icons/up.svg" alt="up" />
+    </a>
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/e62147ac3d.js"
+            crossorigin="anonymous"></script>
+</body>
+</html>

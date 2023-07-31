@@ -1,0 +1,37 @@
+﻿@model PassionateGrowersCard
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create Passionate Growers Card</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input asp-for="Title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+                    <span class="text-danger" asp-validation-for="Title"></span>
+                </div> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input asp-for="Description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Description">
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label>Icon</label>
+                    <input asp-for="IconFile" class="form-control">
+                    <span class="text-danger" asp-validation-for="IconFile"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Html.Partial("_ValidationScriptsPartial")
+}

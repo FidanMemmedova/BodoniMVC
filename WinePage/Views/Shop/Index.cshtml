@@ -1,0 +1,101 @@
+﻿
+@model Shop_VM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="stores__home">
+    <a asp-controller="Home" asp-action="Index"> Home /</a>
+    <a asp-controller="Shop" asp-action="Index">Shop</a>
+</div>
+<div class="shop__menu">
+    <div class="container">
+        <div class="shop__menu__wrapper">
+            <div class="shop__box1">
+                <h2>ARTICLES</h2>
+                @foreach (var shopBlogItem in Model.ShopBlogs)
+                {
+                    <div class="shop__blog">
+                    <img class="shop__blog__img" src="~/uploads/shopBlogImages/@shopBlogItem.Image" alt="blogImage" />
+                    <h5 class="shop__blog__title">@shopBlogItem.Title</h5>
+                    <p class="shop__blog__subtitle">
+                        @shopBlogItem.Desc
+                    </p>
+                </div>
+                <hr />  
+                }
+              
+            </div>
+            <div>
+                <div class="shop__menu__wrapper__wines">
+                    @foreach (var wineItem in Model.Wine)
+                    {
+                        <div class="shop__menu__wrapper__wines__item">
+                            <a asp-controller="Wine" asp-action="Detail" asp-route-id="@wineItem.Id">
+                                <img src="~/uploads/wineImages/@wineItem.Image" alt="wineImage" />
+                                <div class="title title_fz11px title_fz11px_c">@wineItem.Category.Name</div>
+                                <div class="title title_fz18px">@wineItem.Name</div>
+                                <div class="title title_fz18px">$<b>@wineItem.SalePrice</b></div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script>
+        let catInps = document.querySelectorAll('.catInp');
+        let propInps = document.querySelectorAll('.propInp');
+        let brandInps = document.querySelectorAll('.brandInp');
+        let colorInps = document.querySelectorAll('.colorInp');
+        let categories = [];
+        let properties = [];
+        let brands = [];
+        let colors = [];
+        console.log("ahaha")
+        [...catInps].forEach(ci => {
+            ci.addEventListener('change', () => {
+                categories.push(ci.value);
+                console.log("ahaah")
+            //getProducts()
+            })
+        })
+        [...propInps].forEach(pi => {
+            pi.addEventListener('change', () => {
+            properties.push(pi.value);
+            //getProducts()
+            })
+        })
+        [...brandInps].forEach(bi => {
+            bi.addEventListener('change', () => {
+            brands.push(bi.value);
+            //getProducts()
+            })
+        })
+        [...colorInps].forEach(ci => {
+            ci.addEventListener('change', () => {
+            colors.push(ci.value);
+            //getProducts()
+            })
+        })
+
+        //function getProducts(){
+        //    console.log('ahaah')
+        //    fetch('shop/Filter?categories=' + categories + '&properties=' + properties + '&brands=' + brands + '$colorIds' + colors)
+        //    .then(res => {
+        //        return res.text()
+        //    }).then(data => {
+                    
+        //    })
+        //}
+
+                
+        
+    </script>

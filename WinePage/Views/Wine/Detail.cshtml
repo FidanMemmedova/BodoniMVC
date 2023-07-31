@@ -1,0 +1,28 @@
+﻿@model Wine_VM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="stores__home">
+    <a href="shop.html"> Shop /</a>
+    <a href="#">@Model.Name</a>
+</div>
+<div class="wine__wrapper">
+    <div class="wine__wrapper__box1">
+        <div class="wine__wrapper__box1__photo">
+            <img src="~/uploads/wineImages/@Model.Image" alt="wine" />
+        </div>
+    </div>
+    <div class="wine__wrapper__box2">
+        <h3 class="wine__wrapper__box2__title">@Model.Name</h3>
+        <h3 class="wine__wrapper__box2__subtitle">$@Model.SalePrice</h3>
+        <p class="wine__wrapper__box2__text">
+            @Model.Description
+        </p>
+        <div>
+            <p>@Model.ColorName</p>
+        </div>
+    </div>
+</div>
+
+ 

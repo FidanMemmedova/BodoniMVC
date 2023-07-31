@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="stores__home">
+    <a asp-controller="Home" asp-action="Index"> Home /</a>
+    <a asp-controller="Contact" asp-action="Index">Contact us</a>
+</div>
+<div class="contact__menu">
+    <div class="container">
+        <div class="contact__menu__wrapper">
+            <!-- 1 -->
+            <div class="contact__one">
+                <h4 class="contact__one__title">STORE INFORMATION</h4>
+                <div class="contact__one__descr">
+                    <div class="">
+                        <i class="fa-solid fa-location-dot fa-lg"
+                           style="color: #909192"></i>
+                    </div>
+
+                    <div class="contact__one__subtitle">
+                        Leo Bodoni <br />
+                        United States
+                    </div>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="contact__second">
+                <div class="contact__second__title">Contact us</div>
+
+                <div class="contact__form">
+                    <div class="contact__form__item">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="">Subject</label>
+                            </div>
+                            <div class="col-6 offset-1">
+                                <div class="form">
+                                    <input class="contact__form__item_inputs" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="contact__form__item">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="">Email address</label>
+                            </div>
+                            <div class="col-6 offset-1">
+                                <div class="form">
+                                    <input class="contact__form__item_inputs" required placeholder="your@mail.com" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="contact__form__item">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="">Attachment</label>
+                            </div>
+                            <div class="col-6 offset-1">
+                                <div class="form">
+                                    <input class="contact__form__item_inputs" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-2 ">
+                                optional
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="contact__form__item">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="">Message</label>
+                            </div>
+                            <div class="col-9 offset-1">
+                                <div class="form">
+                                    <textarea required placeholder="How can we help?" name="comment" cols="40" rows="3"></textarea>
+
+                                    <input type="submit" value="Send" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

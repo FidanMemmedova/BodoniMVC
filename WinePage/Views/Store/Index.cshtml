@@ -1,0 +1,48 @@
+﻿@model List<Store>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="stores__home">
+    <a asp-controller="Home" asp-action="Index"> Home /</a>
+    <a asp-controller="Store" asp-action="Index">Stores</a>
+</div>
+<div class="stores__cards">
+    <div class="container">
+        <h1>Our stores</h1>
+        <!--  -->
+        @foreach (var storeItem in Model)
+        {
+            <div class="stores__card">
+                <div class="row">
+                    <div class="col">
+                        <img src="~/uploads/storeImages/@storeItem.Image" alt="storeImage" />
+                    </div>
+                    <div class="col">
+                        <div class="stores__main">
+                            <div class="stores__text"></div>
+                            <div class="stores__title">@storeItem.Title</div>
+                            <p class="stores__subtitle">
+                                @storeItem.Subtitle
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="stores__descr">
+                            <p><b>Mon.</b> 09:00AM - 07:00PM</p>
+                            <p><b>Tue.</b> 09:00AM - 07:00PM</p>
+                            <p><b>Wed.</b> 09:00AM - 07:00PM</p>
+                            <p><b>Thu. </b> 09:00AM - 07:00PM</p>
+                            <p><b>Fri. </b> 09:00AM - 07:00PM</p>
+                            <p><b>Sat. </b> 09:00AM - 07:00PM</p>
+                            <p><b>Sun. </b> 09:00AM - 07:00PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
